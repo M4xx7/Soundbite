@@ -1,4 +1,4 @@
-import { recordingOptions } from "@/utils/recordingOptions";
+import { recordingOptions } from "@/app/utils/recordingOptions";
 import { Audio } from "expo-av";
 
 export async function startRecording(setRecording: (value) => void) {

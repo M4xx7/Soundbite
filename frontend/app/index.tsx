@@ -1,7 +1,7 @@
 import { Link, useRouter } from "expo-router";
 import { View, Text, Button } from "react-native";
 import { typography } from "./styles/typography";
-import PageBtn from "../components/PageBtn";
+import PageBtn from "./components/PageBtn";
 
 
 export default function Index() {

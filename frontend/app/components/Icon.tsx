@@ -1,5 +1,5 @@
 import React from "react";
-import { Icons, IconName } from "../assets/icons/icons";
+import {Icons, IconName} from "../assets/icons/icons";
 
 interface Props {
   name: IconName;

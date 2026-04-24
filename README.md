@@ -1,6 +1,22 @@
+
 # Voice Analyzer
 
 <img src="docs/screenshots/home.jpg" width="250"/>
+
+
+## Try It Out
+
+### Mobile App (Android)
+Download and install the APK:
+
+https://expo.dev/accounts/h4cker/projects/voice-analyzer-app/builds/fbc78b40-8979-4c63-a9ea-f24d3bcdff42
+
+### Backend API
+The backend is deployed on Hugging Face Spaces and can be tested via the  FastAPI documentation:
+
+https://makss7-voice-analyzer-api.hf.space/docs
+
+
 
 **Voice Analyzer** is a tool made for analyzing and evaluating human speech recordings. It includes a mobile application built with Expo Go (React Native + TypeScript) and a Python backend API that processes audio, extracts features, and returns analysis results.
 

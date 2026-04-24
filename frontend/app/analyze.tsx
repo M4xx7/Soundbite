@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { Text, View, ScrollView, ActivityIndicator } from 'react-native';
 import { typography } from './styles/typography';
-import Icon from '../components/Icon';
+import Icon from './components/Icon';
 import { colors } from './styles/colors';
 import { styles } from './styles/common';
-import PrimaryBtn from '@/components/PrimaryBtn';
-import PlaybackControlBtn from '@/components/PlaybackControlBtn';
-import { togglePlayback } from '../utils/togglePlayback';
-import { startRecording, stopRecording } from '../utils/recording';
-import { ANALYZE_URL } from './constants/constants'
-import { pickAndUpload, uploadRecordedAudio } from '../utils/upload';
-import AudioBottomBar from '@/components/AudioBottomBar';
-import MetricDisplay from '@/components/MetricDisplay';
-import { useAudioProcessor } from '@/hooks/useAudioProcessor';
+import PrimaryBtn from '@/app/components/PrimaryBtn';
+import PlaybackControlBtn from '@/app/components/PlaybackControlBtn';
+import { togglePlayback } from './utils/togglePlayback';
+import { startRecording, stopRecording } from './utils/recording';
+import { ANALYZE_URL } from './config/config'
+import { pickAndUpload, uploadRecordedAudio } from './utils/upload';
+import AudioBottomBar from '@/app/components/AudioBottomBar';
+import MetricDisplay from '@/app/components/MetricDisplay';
+import { useAudioProcessor } from '@/app/hooks/useAudioProcessor';
 
 
 export default function Analyze() {
