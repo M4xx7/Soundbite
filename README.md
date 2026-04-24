@@ -2,18 +2,18 @@
 
 <img src="docs/screenshots/home.jpg" width="250"/>
 
-**Voice Analyzer** is made for analyzing and evaluating human speech audio. It consists of a mobile application built with Expo Go (React Native + TypeScript) and a Python backend API that processes audio, extracts features, and returns analysis results.
+**Voice Analyzer** is a tool made for analyzing and evaluating human speech recordings. It includes a mobile application built with Expo Go (React Native + TypeScript) and a Python backend API that processes audio, extracts features, and returns analysis results.
 
 ## Project Architecture
 
-The project includes two main parts:
+The project consists of two main components:
 
 ### Mobile Application
-The mobile app provides the user interface and is written in TypeScript using React Native with Expo Go. It allows users to record or upload audio and view analysis results.
+The mobile app provides the user interface and is developed using TypeScript and React Native with Expo Go. It allows users to record or upload audio and view analysis results.
 
-The app contains two main pages:
-* **Analyze** – extracts linguistic and speech characteristics
-* **Evaluate** – assesses overall audio quality
+The app has two pages:
+* **Analyze audio** – allows to extract linguistic and speech characteristics
+* **Evaluate audio** – assesses overall audio quality
 
 <p align="center">
   <img src="docs/screenshots/analyze.jpg" width="250"/>
@@ -25,22 +25,22 @@ On both pages, users can:
 * record audio directly from the device microphone
 * upload existing audio files
 * play back audio after processing
-* view metrics returned by the backend
+* view results returned by the backend
 
 The app communicates with the backend through REST API requests.
 
 ### Python Backend
-The backend is implemented in Python and contains two endpoints.
+The backend is implemented in Python and includes two endpoints.
 
 * `/analyze` – performs transcription and speech analysis
-* `/evaluate` – computes acoustic quality metrics and overall score
+* `/evaluate` – computes acoustic quality metrics and overall score of the audio
 
 ---
 
 ## Core Processing Modules
 
 ### VoiceTranscriber
-Used by the `/analyze` endpoint to extract speech and language information. This module uses **OpenAI Whisper** for speech recognition.
+Used for extraction of speech and language information when `/analyze` endpoint receives a request. This module uses **OpenAI Whisper** for speech recognition.
 
 It provides:
 * Speech transcription
@@ -50,7 +50,7 @@ It provides:
 * Sound purity classification
 
 ### VoiceAnalyzer
-Used by the `/evaluate` endpoint to compute acoustic quality metrics from the audio signal using **Praat/Parselmouth**.
+Used to compute acoustic quality metrics from the audio signal with **Praat/Parselmouth** when `/evaluate` endpoint receives a request.
 
 It extracts:
 * **Jitter** – pitch period variability
@@ -58,7 +58,7 @@ It extracts:
 * **HNR** – harmonics-to-noise ratio
 * **SNR** – signal-to-noise ratio
 
-An overall audio quality score is calculated from these metrics and returned to the mobile application.
+An overall audio quality score is calculated based on those metrics.
 
 ## Technologies Used
 
@@ -70,7 +70,6 @@ An overall audio quality score is calculated from these metrics and returned to 
 **Backend**
 * Python
 * FastAPI / Flask 
-* Parselmouth (Praat bindings)
 * OpenAI Whisper
 
 

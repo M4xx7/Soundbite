@@ -4,7 +4,7 @@ import { typography } from "./styles/typography";
 import PageBtn from "../components/PageBtn";
 
 
-export default function Home() {
+export default function Index() {
 
   const router = useRouter();
 
