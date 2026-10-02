@@ -1,19 +1,17 @@
 from pydantic import BaseModel
-from schemas.transcription import TranscriberData
+from typing import List, Dict, Any
 
 
-class PurityResult(BaseModel):
-    label: str
-    score: int
+class TranscriberData(BaseModel):
+    content: str
+    language: str
+    word_count: int
+    words_per_minute: float
 
 
-class AudioAnalysisResult(BaseModel):
-    purity: PurityResult
-    transcriber: TranscriberData
-    speech_intensity: str
-    jitter: float
-    shimmer: float
-    harmonicity: float
-    snr: float
-    quality_score: float
-    quality_label: str
+class UnderstandingResult(BaseModel):
+    summary: str
+    topics: List[str]
+
+
+

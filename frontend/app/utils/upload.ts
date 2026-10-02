@@ -28,6 +28,7 @@ export async function pickAndUpload(apiUrl: string, setCurrentAudioName: (value:
             type: selectedFile.mimeType || 'audio/wav',
         });
 
+        console.log("API URL:", apiUrl);
         const response = await axios.post(apiUrl, formData, {
             headers: { 'Content-Type': 'multipart/form-data' },
         });

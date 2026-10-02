@@ -19,7 +19,7 @@ export default function Index() {
           iconWidth={80}
         />
         <PageBtn
-          onPress={() => router.push('/evaluate')}
+          onPress={() => router.push('/process')}
           iconName={'score'}
           iconHeight={80}
           iconWidth={80}

@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://makss7-voice-analyzer-api.hf.space';
+const API_BASE_URL = 'http://10.0.2.2:8000';
 
 export const ANALYZE_URL = `${API_BASE_URL}/analyze`;
-export const EVALUATE_URL = `${API_BASE_URL}/evaluate`;
+export const PROCESS_URL = `${API_BASE_URL}/process`;
