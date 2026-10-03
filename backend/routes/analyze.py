@@ -6,15 +6,15 @@ import uuid
 import filetype
 import hashlib
 
+from backend.services.SummaryService import SummaryService
 from backend.services.TranscriptionService import TranscriptionService
-from backend.services.UnderstandingService import UnderstandingService
 from backend.core.audio_utils import convert_audio_to_wav
-from backend.core.dependencies import get_transcription_service, get_understanding_service
+from backend.core.dependencies import get_transcription_service, get_summary_service
 
 router = APIRouter()
 
 TRANSCRIPTION_CACHE = {}
-UNDERSTANDING_CACHE = {}
+SUMMARY_CACHE = {}
 
 
 def calculate_file_hash(file_path: str) -> str:
@@ -71,11 +71,11 @@ async def transcribe_audio(
             os.remove(file_to_analyze)
 
 
-@router.post("/understand")
-async def understand_audio(
+@router.post("/summarize")
+async def summarize(
     file: UploadFile = File(...),
     transcription_service: TranscriptionService = Depends(get_transcription_service),
-    understanding_service: UnderstandingService = Depends(get_understanding_service)
+    summary_service: SummaryService = Depends(get_summary_service)
 ):
     unique_id = uuid.uuid4().hex
     original_path = f"temp_{unique_id}_{file.filename}"
@@ -94,8 +94,8 @@ async def understand_audio(
 
         file_hash = await run_in_threadpool(calculate_file_hash, file_to_analyze)
 
-        if file_hash in UNDERSTANDING_CACHE:
-            return {"understanding": UNDERSTANDING_CACHE[file_hash]}
+        if file_hash in SUMMARY_CACHE:
+            return {"summary": SUMMARY_CACHE[file_hash]}
 
         if file_hash in TRANSCRIPTION_CACHE:
             transcript_content = TRANSCRIPTION_CACHE[file_hash]["content"]
@@ -111,17 +111,17 @@ async def understand_audio(
                 "words_per_minute": transcript_data.words_per_minute,
             }
 
-        understanding_data = await run_in_threadpool(
-            understanding_service.analyze_transcript, transcript_content
+        summary_data = await run_in_threadpool(
+            summary_service.analyze_transcript, transcript_content
         )
 
         response_data = {
-            "summary": understanding_data.summary,
-            "topics": understanding_data.topics,
+            "breakdown": summary_data.breakdown,
+            "topics": summary_data.topics,
         }
 
-        UNDERSTANDING_CACHE[file_hash] = response_data
-        return {"understanding": response_data}
+        SUMMARY_CACHE[file_hash] = response_data
+        return {"summary": response_data}
 
     finally:
         if os.path.exists(original_path):

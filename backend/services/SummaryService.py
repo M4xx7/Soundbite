@@ -1,14 +1,14 @@
 import requests
 import json
-from backend.schemas.audio_analysis import UnderstandingResult
+from backend.schemas.audio_analysis import SummaryResult
 
 
-class UnderstandingService:
+class SummaryService:
     def __init__(self, model_name: str = "llama3.2", base_url: str = "http://localhost:11434"):
         self.model_name = model_name
         self.base_url = base_url
 
-    def analyze_transcript(self, transcript_text: str) -> UnderstandingResult:
+    def analyze_transcript(self, transcript_text: str) -> SummaryResult:
         prompt = f"""
 You are an expert voice and speech analysis assistant. Analyze the following transcript and return a valid JSON object ONLY, with no extra markdown or text.
 
@@ -36,13 +36,13 @@ Required JSON structure:
             result = response.json()
             parsed_data = json.loads(result.get("response", "{}"))
 
-            return UnderstandingResult(
-                summary=parsed_data.get("summary", "No summary generated."),
+            return SummaryResult(
+                breakdown=parsed_data.get("summary", "No summary generated."),
                 topics=parsed_data.get("topics", []),
             )
         except Exception as e:
             print(f"OLLAMA ERROR: {e}")
-            return UnderstandingResult(
-                summary="Could not generate summary via local LLM.",
+            return SummaryResult(
+                breakdown="Could not generate summary via local LLM.",
                 topics=[],
             )

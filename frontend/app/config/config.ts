@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://10.0.2.2:8000';
+const API_BASE_URL = 'http://147.32.89.8:8000';
 
-export const ANALYZE_URL = `${API_BASE_URL}/analyze`;
-export const PROCESS_URL = `${API_BASE_URL}/process`;
+export const TRANSCRIBE_URL = `${API_BASE_URL}/transcribe`;
+export const SUMMARIZE_URL = `${API_BASE_URL}/summarize`;

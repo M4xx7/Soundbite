@@ -13,14 +13,14 @@ export default function Index() {
       <Text style={[typography.title, { marginTop: 100 }]}>Audio analyzer</Text>
       <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 150 }}>
         <PageBtn
-          onPress={() => router.push('/analyze')}
-          iconName={'analysis'}
+          onPress={() => router.push('/transcribe')}
+          iconName={'transcript'}
           iconHeight={80}
           iconWidth={80}
         />
         <PageBtn
-          onPress={() => router.push('/process')}
-          iconName={'score'}
+          onPress={() => router.push('/summarize')}
+          iconName={'ai'}
           iconHeight={80}
           iconWidth={80}
         />

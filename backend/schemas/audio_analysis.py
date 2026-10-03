@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Dict, Any
+from typing import List
 
 
 class TranscriberData(BaseModel):
@@ -9,8 +9,8 @@ class TranscriberData(BaseModel):
     words_per_minute: float
 
 
-class UnderstandingResult(BaseModel):
-    summary: str
+class SummaryResult(BaseModel):
+    breakdown: str
     topics: List[str]
 
 

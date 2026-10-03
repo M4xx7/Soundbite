@@ -8,6 +8,8 @@ import Microphone from "./microphone.svg";
 import StopRecording from "./stop-recording.svg";
 import Analysis from "./analysis.svg";
 import Score from "./score.svg";
+import Ai from "./ai.png";
+import Transcript from "./transcript.png";
 
 export const Icons = {
   language: Language,
@@ -20,6 +22,8 @@ export const Icons = {
   stopRecording: StopRecording,
   analysis: Analysis,
   score: Score,
+  ai: Ai,
+  transcript: Transcript,
 };
 
 export type IconName = keyof typeof Icons;

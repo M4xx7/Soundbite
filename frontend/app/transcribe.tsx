@@ -8,16 +8,16 @@ import PrimaryBtn from '@/app/components/PrimaryBtn';
 import PlaybackControlBtn from '@/app/components/PlaybackControlBtn';
 import { togglePlayback } from './utils/togglePlayback';
 import { startRecording, stopRecording } from './utils/recording';
-import { ANALYZE_URL } from './config/config'
+import { TRANSCRIBE_URL } from './config/config'
 import { pickAndUpload, uploadRecordedAudio } from './utils/upload';
 import AudioBottomBar from '@/app/components/AudioBottomBar';
 import MetricDisplay from '@/app/components/MetricDisplay';
 import { useAudioProcessor } from '@/app/hooks/useAudioProcessor';
 
 
-export default function Analyze() {
+export default function Transcribe() {
 
-    const API_URL = ANALYZE_URL
+    const API_URL = TRANSCRIBE_URL
 
     const {
         loading,
@@ -42,7 +42,7 @@ export default function Analyze() {
                 {loading && <ActivityIndicator size="large" color={colors.textHighlight} />}
             </View>
             <ScrollView contentContainerStyle={{ paddingBottom: 140 }}>
-                <Text style={[typography.title, { marginTop: 70 }]}>Analyze audio</Text>
+                <Text style={[typography.title, { marginTop: 70 }]}>Transcribe</Text>
                 {result && !loading ?
                     <View style={{ marginTop: 70 }}>
                         <Text style={[typography.audio, {
@@ -68,20 +68,6 @@ export default function Analyze() {
                             />
 
                         </View>
-                        <View style={styles.container}>
-
-                            <MetricDisplay
-                                title="speech intensity"
-                                value={result.metrics.speech_intensity}
-                                iconName="speech"
-                            />
-                            <MetricDisplay
-                                title="audio purity"
-                                value={result.metrics.purity.label}
-                                iconName="sound"
-                            />
-
-                        </View>
 
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
                             <PlaybackControlBtn onPress={onTogglePlayback}>
@@ -90,14 +76,12 @@ export default function Analyze() {
                         </View>
 
                     </View>
-                    : (
-                        <Text>Upload or record an audio to analyze</Text>
-                    )
+                    : null
                 }
             </ScrollView >
 
             <AudioBottomBar
-                actionTitle="Analyze recording"
+                actionTitle="Transribe recording"
                 loading={loading}
                 recording={recording}
                 recordedUri={recordedUri}
