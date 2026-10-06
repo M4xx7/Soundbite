@@ -8,16 +8,15 @@ import PrimaryBtn from '@/app/components/PrimaryBtn';
 import PlaybackControlBtn from '@/app/components/PlaybackControlBtn';
 import { togglePlayback } from './utils/togglePlayback';
 import { startRecording, stopRecording } from './utils/recording';
-import { TRANSCRIBE_URL } from './config/config'
 import { pickAndUpload, uploadRecordedAudio } from './utils/upload';
 import AudioBottomBar from '@/app/components/AudioBottomBar';
 import MetricDisplay from '@/app/components/MetricDisplay';
 import { useAudioProcessor } from '@/app/hooks/useAudioProcessor';
+import { SUBMIT_JOB_URL } from './config/api';
 
 
 export default function Transcribe() {
 
-    const API_URL = TRANSCRIBE_URL
 
     const {
         loading,
@@ -32,7 +31,7 @@ export default function Transcribe() {
         onStopRecording,
         onUploadRecordedAudio,
         onPickAndUpload
-    } = useAudioProcessor(API_URL);
+    } = useAudioProcessor(SUBMIT_JOB_URL);
 
 
     return (

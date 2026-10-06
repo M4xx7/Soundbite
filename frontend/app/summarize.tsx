@@ -7,7 +7,7 @@ import { styles } from './styles/common';
 import PlaybackControlBtn from '@/app/components/PlaybackControlBtn';
 import AudioBottomBar from '@/app/components/AudioBottomBar';
 import { useAudioProcessor } from '@/app/hooks/useAudioProcessor';
-import { SUMMARIZE_URL } from './config/config';
+import { SUBMIT_JOB_URL } from './config/api';
 
 export default function Summarize() {
     const {
@@ -21,7 +21,7 @@ export default function Summarize() {
         onStopRecording,
         onUploadRecordedAudio,
         onPickAndUpload
-    } = useAudioProcessor(SUMMARIZE_URL);
+    } = useAudioProcessor(SUBMIT_JOB_URL);
 
    
     const summary = result?.summary;
