@@ -11,7 +11,7 @@ export default function AudioBottomBar({
 }) {
     return (
         <View style={[styles.bottomBar, { opacity: !loading ? 1 : 0 }]} pointerEvents={loading ? 'none' : 'auto'}>
-            <View style={{ marginBottom: 20 }}>
+            <View style={{ marginBottom: 15 }}>
                 <View style={{ alignItems: 'center' }}>
                     {recording ? (
                         <PlaybackControlBtn onPress={onStopRecording}>
@@ -24,7 +24,7 @@ export default function AudioBottomBar({
                     )}
                 </View>
 
-                <View style={{ opacity: recordedUri && !loading ? 1 : 0, marginBottom: 0, marginTop: 10 }}>
+                <View style={{ opacity: recordedUri && !loading ? 1 : 0, marginBottom: 0, marginTop: 15 }}>
                     <PrimaryBtn title={actionTitle} onPress={onUploadRecordedAudio} />
                 </View>
             </View>

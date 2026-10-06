@@ -18,7 +18,7 @@ export const typography = {
         color: colors.text
     },
     metric: {
-        fontSize: 26,
+        fontSize: 20,
         fontWeight: '600',
         color: colors.primary
     },
