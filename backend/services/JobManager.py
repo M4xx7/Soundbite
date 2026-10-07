@@ -2,7 +2,6 @@ import uuid
 import json
 from typing import Dict, Any, Optional
 from enum import Enum
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
 from backend.models.job_model import JobModel
