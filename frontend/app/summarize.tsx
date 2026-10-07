@@ -8,6 +8,7 @@ import PlaybackControlBtn from '@/app/components/PlaybackControlBtn';
 import AudioBottomBar from '@/app/components/AudioBottomBar';
 import { useAudioProcessor } from '@/app/hooks/useAudioProcessor';
 import { SUBMIT_JOB_URL } from './config/api';
+import TestScreen from './components/TestScreen';
 
 export default function Summarize() {
     const {
@@ -95,6 +96,8 @@ export default function Summarize() {
                     </View>
                 ) : null}
             </ScrollView>
+
+            <TestScreen></TestScreen>
 
             <AudioBottomBar
                 actionTitle="Summarize"

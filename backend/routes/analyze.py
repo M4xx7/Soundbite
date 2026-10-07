@@ -46,3 +46,8 @@ async def get_job_status(job_id: str):
     if job["status"] == JobStatus.NOT_FOUND:
         raise HTTPException(status_code=404, detail="Job not found")
     return job
+
+@router.post("/jobs/test-ping")
+async def test_ping():
+    print("--- PING RECEIVED SUCCESSFULLY ---")
+    return {"message": "pong"}

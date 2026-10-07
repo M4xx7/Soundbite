@@ -19,9 +19,6 @@ export async function uploadAndProcessAudio(
   const submitResponse = await fetch(SUBMIT_JOB_URL, {
     method: 'POST',
     body: formData,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
   });
 
   if (!submitResponse.ok) {
