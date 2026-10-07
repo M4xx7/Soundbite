@@ -2,11 +2,11 @@ from fastapi import APIRouter, UploadFile, File, BackgroundTasks, HTTPException,
 import shutil
 import uuid
 
-from backend.services.SummaryService import SummaryService
-from backend.services.TranscriptionService import TranscriptionService
-from backend.services.JobManager import job_manager, JobStatus
-from backend.services.AudioPipelineService import process_audio_pipeline
-from backend.core.dependencies import get_transcription_service, get_summary_service
+from services.SummaryService import SummaryService
+from services.TranscriptionService import TranscriptionService
+from services.JobManager import job_manager, JobStatus
+from services.AudioPipelineService import process_audio_pipeline
+from core.dependencies import get_transcription_service, get_summary_service
 
 router = APIRouter()
 

@@ -4,8 +4,8 @@ from typing import Dict, Any, Optional
 from enum import Enum
 from sqlalchemy import select
 
-from backend.models.job_model import JobModel
-from backend.core.database import AsyncSessionLocal
+from models.job_model import JobModel
+from core.database import AsyncSessionLocal
 
 
 class JobStatus(str, Enum):

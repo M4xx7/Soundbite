@@ -1,5 +1,5 @@
 import os
-from backend.services.JobManager import job_manager, JobStatus
+from services.JobManager import job_manager, JobStatus
 
 
 async def process_audio_pipeline(job_id: str, file_path: str, transcription_service, summary_service):

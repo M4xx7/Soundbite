@@ -1,7 +1,7 @@
 import httpx
 import os
 import json
-from backend.schemas.audio_analysis import SummaryResult
+from schemas.audio_analysis import SummaryResult
 
 
 class SummaryService:

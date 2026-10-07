@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Text, DateTime
 from datetime import datetime
-from backend.core.database import Base
+from core.database import Base
 
 
 class JobModel(Base):

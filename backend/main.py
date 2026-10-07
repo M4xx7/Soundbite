@@ -3,8 +3,8 @@ from contextlib import asynccontextmanager
 import uvicorn
 import os
 
-from backend.core.database import init_db
-from backend.routes import analyze
+from core.database import init_db
+from routes import analyze
 from dotenv import load_dotenv
 
 @asynccontextmanager
@@ -18,4 +18,4 @@ app.include_router(analyze.router)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=port)
+    uvicorn.run("main:app", host="0.0.0.0", port=port)

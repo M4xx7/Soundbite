@@ -1,7 +1,7 @@
 import httpx
 import os
 
-from backend.schemas.audio_analysis import TranscriberData
+from schemas.audio_analysis import TranscriberData
 
 
 class TranscriptionService:

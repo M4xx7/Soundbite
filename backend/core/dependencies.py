@@ -1,7 +1,7 @@
 from functools import lru_cache
 
-from backend.services.SummaryService import SummaryService
-from backend.services.TranscriptionService import TranscriptionService
+from services.SummaryService import SummaryService
+from services.TranscriptionService import TranscriptionService
 
 
 @lru_cache()
