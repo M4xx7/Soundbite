@@ -1,6 +1,5 @@
 import httpx
 import os
-import aiofiles
 from schemas.audio_analysis import TranscriberData
 
 
@@ -14,10 +13,11 @@ class TranscriptionService:
     async def get_transcriber_data(self, audio_path: str) -> TranscriberData:
         headers = {"Authorization": f"Bearer {self.api_key}"}
 
+        # Extended timeout to 60s to prevent premature 502 gateway drops
         async with httpx.AsyncClient(timeout=60.0) as client:
             try:
-                async with aiofiles.open(audio_path, "rb") as f:
-                    file_bytes = await f.read()
+                with open(audio_path, "rb") as f:
+                    file_bytes = f.read()
 
                 files = {"file": (os.path.basename(audio_path), file_bytes, "audio/wav")}
                 data = {
