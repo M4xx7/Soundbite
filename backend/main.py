@@ -3,8 +3,8 @@ from contextlib import asynccontextmanager
 import uvicorn
 import os
 
-from backend.core.database import init_db
-from backend.routes import analyze
+from core.database import init_db
+from routes import analyze
 from dotenv import load_dotenv
 
 @asynccontextmanager
@@ -13,7 +13,7 @@ async def lifespan(app: FastAPI):
     yield
 
 load_dotenv()
-app = FastAPI(title="Voice Analyzer API", lifespan=lifespan)
+app = FastAPI(title="Soundbyte", lifespan=lifespan)
 app.include_router(analyze.router)
 
 if __name__ == "__main__":
