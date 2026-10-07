@@ -3,7 +3,6 @@ import os
 import json
 from schemas.audio_analysis import SummaryResult
 
-
 class SummaryService:
     def __init__(self, api_key: str = None, model_name: str = "openai/gpt-oss-20b"):
         self.api_key = api_key or os.getenv("GROQ_API_KEY")
@@ -39,7 +38,7 @@ Required JSON structure:
             "temperature": 0.3
         }
 
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        async with httpx.AsyncClient(timeout=60.0) as client:
             try:
                 response = await client.post(self.url, headers=headers, json=payload)
 
@@ -50,7 +49,6 @@ Required JSON structure:
                 result = response.json()
 
                 content_str = result["choices"][0]["message"]["content"]
-
                 cleaned_content = content_str.strip()
                 if cleaned_content.startswith("```json"):
                     cleaned_content = cleaned_content[7:]

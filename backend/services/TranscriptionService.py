@@ -1,6 +1,6 @@
 import httpx
 import os
-
+import aiofiles
 from schemas.audio_analysis import TranscriberData
 
 
@@ -14,24 +14,29 @@ class TranscriptionService:
     async def get_transcriber_data(self, audio_path: str) -> TranscriberData:
         headers = {"Authorization": f"Bearer {self.api_key}"}
 
-        async with httpx.AsyncClient(timeout=30.0) as client:
-            with open(audio_path, "rb") as f:
-                files = {"file": (os.path.basename(audio_path), f, "audio/wav")}
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            try:
+                async with aiofiles.open(audio_path, "rb") as f:
+                    file_bytes = await f.read()
+
+                files = {"file": (os.path.basename(audio_path), file_bytes, "audio/wav")}
                 data = {
                     "model": "whisper-large-v3-turbo",
                     "response_format": "verbose_json"
                 }
 
                 response = await client.post(self.url, headers=headers, files=files, data=data)
+
+                if response.status_code != 200:
+                    print(f"GROQ WHISPER API ERROR: {response.status_code} - {response.text}")
+
                 response.raise_for_status()
                 result = response.json()
 
                 content = result.get("text", "").strip()
                 word_count = len(content.split())
-
                 duration = float(result.get("duration", 0.0))
                 language = result.get("language", "en")
-
                 wpm = (word_count / duration * 60) if duration > 0 else 0.0
 
                 return TranscriberData(
@@ -40,3 +45,6 @@ class TranscriptionService:
                     word_count=word_count,
                     words_per_minute=round(wpm, 2)
                 )
+            except Exception as e:
+                print(f"WHISPER EXCEPTION: {e}")
+                raise e
