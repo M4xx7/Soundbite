@@ -1,6 +1,6 @@
 import Language from "./language.svg";
 import Words from "./words.svg";
-import Sound from "./sound.svg";
+import Sound from "./sound.png";
 import Speedometer from "./speedometer.svg";
 import Speech from "./speech.svg";
 import PlayPause from "./play-pause.svg";

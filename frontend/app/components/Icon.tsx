@@ -17,7 +17,7 @@ export default function Icon({ name, width = 24, height = 24, style }: Props) {
     return null;
   }
 
-  // If it's a PNG/JPEG (imported via require, which returns a number or asset object in React Native)
+
   if (typeof IconAsset === "number" || (typeof IconAsset === "object" && "uri" in IconAsset)) {
     return (
       <Image 
@@ -27,7 +27,6 @@ export default function Icon({ name, width = 24, height = 24, style }: Props) {
     );
   }
 
-  // Otherwise, treat it as a React SVG component
   const SvgIcon = IconAsset;
   return <SvgIcon width={width} height={height} style={style} />;
 }

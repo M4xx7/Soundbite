@@ -1,6 +1,7 @@
 
-export const SUBMIT_JOB_URL = "https://soundbite-production.up.railway.app/jobs/submit";
+export const API_BASE_URL = "https://soundbite-production.up.railway.app";
 
+export const SUBMIT_JOB_URL = `${API_BASE_URL}/jobs/submit`;
 export const getJobStatusUrl = (jobId: string) => `${API_BASE_URL}/jobs/${jobId}`;
 
 export interface JobResultPayload {

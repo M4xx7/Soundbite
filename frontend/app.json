@@ -4,7 +4,7 @@
     "slug": "voice-analyzer-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./app/assets/icons/sound.png",
     "scheme": "voiceanalyzerapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -18,9 +18,9 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/icons/voice-recognition.png",
-        "backgroundImage": "./assets/icons/voice-recognition.png",
-        "monochromeImage": "./assets/icons/voice-recognition.png"
+        "foregroundImage": "./app/assets/icons/sound.png",
+        "backgroundImage": "./app/assets/icons/sound.png",
+        "monochromeImage": "./app/assets/icons/sound.png"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
@@ -28,17 +28,17 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/icons/voice-recognition.png"
+      "favicon": "./app/assets/icons/sound.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/icons/voice-recognition.png",
+          "image": "./app/assets/icons/sound.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#000000",
           "dark": {
             "backgroundColor": "#000000"
           }
