@@ -18,12 +18,16 @@ async def submit_audio_job(
         transcription_service: TranscriptionService = Depends(get_transcription_service),
         summary_service: SummaryService = Depends(get_summary_service)
 ):
+    print(f"--- INCOMING JOB SUBMIT: Received file {file.filename} ---")
+
     unique_id = uuid.uuid4().hex
     original_path = f"temp_{unique_id}_{file.filename}"
 
     with open(original_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+        while chunk := await file.read(1024 * 1024):
+            buffer.write(chunk)
 
+    print(f"--- FILE SAVED TO {original_path}, CREATING JOB ---")
     job_id = await job_manager.create_job()
 
     background_tasks.add_task(
@@ -35,7 +39,6 @@ async def submit_audio_job(
     )
 
     return {"job_id": job_id, "status": JobStatus.PENDING}
-
 
 @router.get("/jobs/{job_id}")
 async def get_job_status(job_id: str):
