@@ -19,7 +19,7 @@ async def submit_audio_job(
         summary_service: SummaryService = Depends(get_summary_service)
 ):
     print(f"--- INCOMING JOB SUBMIT: Received file {file.filename} ---")
-
+    
     unique_id = uuid.uuid4().hex
     original_path = f"temp_{unique_id}_{file.filename}"
 
@@ -27,7 +27,6 @@ async def submit_audio_job(
         while chunk := await file.read(1024 * 1024):
             buffer.write(chunk)
 
-    print(f"--- FILE SAVED TO {original_path}, CREATING JOB ---")
     job_id = await job_manager.create_job()
 
     background_tasks.add_task(
@@ -40,14 +39,10 @@ async def submit_audio_job(
 
     return {"job_id": job_id, "status": JobStatus.PENDING}
 
+
 @router.get("/jobs/{job_id}")
 async def get_job_status(job_id: str):
     job = await job_manager.get_job(job_id)
     if job["status"] == JobStatus.NOT_FOUND:
         raise HTTPException(status_code=404, detail="Job not found")
     return job
-
-@router.post("/jobs/test-ping")
-async def test_ping():
-    print("--- PING RECEIVED SUCCESSFULLY ---")
-    return {"message": "pong"}
