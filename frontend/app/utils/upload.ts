@@ -7,8 +7,8 @@ import axios from 'axios';
 async function pollJobStatus(baseUrl: string, jobId: string): Promise<any> {
     const baseClean = baseUrl.replace(/\/jobs\/submit\/?$/, '');
     const statusUrl = `${baseClean}/jobs/${jobId}`;
-    
-    const maxAttempts = 60; // 2 minutes max
+
+    const maxAttempts = 60;
     let attempts = 0;
 
     while (attempts < maxAttempts) {
@@ -17,10 +17,10 @@ async function pollJobStatus(baseUrl: string, jobId: string): Promise<any> {
 
         try {
             const response = await axios.get(statusUrl);
-            const data = response.data; 
+            const data = response.data;
 
             if (data.status === 'completed') {
-                return data.result; 
+                return data.result;
             }
             if (data.status === 'failed') {
                 throw new Error(data.error || 'Pipeline processing failed.');
@@ -35,11 +35,11 @@ async function pollJobStatus(baseUrl: string, jobId: string): Promise<any> {
 
 
 export async function pickAndUpload(
-    apiUrl: string, 
-    setCurrentAudioName: (value: string) => void, 
-    setLoading: (value: boolean) => void, 
-    setResult: (value: any) => void, 
-    setIsPlaying: (value: boolean) => void, 
+    apiUrl: string,
+    setCurrentAudioName: (value: string) => void,
+    setLoading: (value: boolean) => void,
+    setResult: (value: any) => void,
+    setIsPlaying: (value: boolean) => void,
     setSound: (value: Audio.Sound) => void
 ) {
     try {
@@ -65,13 +65,9 @@ export async function pickAndUpload(
 
         console.log("Submitting job via fetch to:", apiUrl);
 
-        // Use native fetch instead of axios for reliable Android file uploads
         const submitResponse = await fetch(apiUrl, {
             method: 'POST',
             body: formData,
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
         });
 
         if (!submitResponse.ok) {
@@ -80,7 +76,7 @@ export async function pickAndUpload(
 
         const responseData = await submitResponse.json();
         const jobId = responseData.job_id;
-        
+
         if (!jobId) {
             throw new Error('No job ID returned from server.');
         }
@@ -99,12 +95,12 @@ export async function pickAndUpload(
 
 
 export async function uploadRecordedAudio(
-    apiUrl: string, 
-    recordedUri: string | null, 
-    setRecordedUri: (value: any) => void, 
-    setLoading: (value: boolean) => void, 
-    setResult: (value: any) => void, 
-    setIsPlaying: (value: boolean) => void, 
+    apiUrl: string,
+    recordedUri: string | null,
+    setRecordedUri: (value: any) => void,
+    setLoading: (value: boolean) => void,
+    setResult: (value: any) => void,
+    setIsPlaying: (value: boolean) => void,
     setSound: (value: Audio.Sound) => void
 ) {
     if (!recordedUri) return;
@@ -129,12 +125,10 @@ export async function uploadRecordedAudio(
         const submitResponse = await fetch(apiUrl, {
             method: 'POST',
             body: formData,
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
         });
 
         if (!submitResponse.ok) {
+            const errorBody = await submitResponse.text(); 
             throw new Error(`Server returned status ${submitResponse.status}`);
         }
 
