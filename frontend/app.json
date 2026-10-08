@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "voice-analyzer-app",
+    "name": "Soundbyte",
     "slug": "voice-analyzer-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/icons/sound.png",
-    "scheme": "voiceanalyzerapp",
+    "scheme": "soundbyte",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

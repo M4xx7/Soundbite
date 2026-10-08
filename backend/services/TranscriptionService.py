@@ -13,7 +13,7 @@ class TranscriptionService:
     async def get_transcriber_data(self, audio_path: str) -> TranscriberData:
         headers = {"Authorization": f"Bearer {self.api_key}"}
 
-        # Extended timeout to 60s to prevent premature 502 gateway drops
+     
         async with httpx.AsyncClient(timeout=60.0) as client:
             try:
                 with open(audio_path, "rb") as f:

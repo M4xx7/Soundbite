@@ -48,8 +48,7 @@ __pycache__/
 app-example
 
 # generated native folders
-/ios
-/android
+frontend/android
 
 # audio samples
 *.wav

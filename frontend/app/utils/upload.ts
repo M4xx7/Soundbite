@@ -57,11 +57,17 @@ export async function pickAndUpload(
         setLoading(true);
 
         const formData = new FormData();
-        formData.append('file', {
-            uri: selectedFile.uri,
-            name: selectedFile.name,
-            type: selectedFile.mimeType || 'audio/wav',
-        } as any);
+
+        if (Platform.OS === 'web') {
+            const webFile = (selectedFile as any).file || selectedFile;
+            formData.append('file', webFile);
+        } else {
+            formData.append('file', {
+                uri: selectedFile.uri,
+                name: selectedFile.name,
+                type: selectedFile.mimeType || 'audio/wav',
+            } as any);
+        }
 
         console.log("Submitting job via fetch to:", apiUrl);
 
@@ -71,6 +77,8 @@ export async function pickAndUpload(
         });
 
         if (!submitResponse.ok) {
+            const errorBody = await submitResponse.text();
+            console.error("Server error body:", errorBody);
             throw new Error(`Server returned status ${submitResponse.status}`);
         }
 
@@ -110,15 +118,23 @@ export async function uploadRecordedAudio(
     const mimeType = isIOS ? "audio/wav" : "audio/m4a";
 
     const formData = new FormData();
-    formData.append("file", {
-        uri: recordedUri,
-        name: fileName,
-        type: mimeType,
-    });
 
     try {
         setLoading(true);
         setRecordedUri(recordedUri);
+
+        if (Platform.OS === 'web') {
+          
+            const response = await fetch(recordedUri);
+            const blob = await response.blob();
+            formData.append("file", blob, fileName);
+        } else {
+            formData.append("file", {
+                uri: recordedUri,
+                name: fileName,
+                type: mimeType,
+            } as any);
+        }
 
         console.log("Submitting recorded job via fetch to:", apiUrl);
 
@@ -128,7 +144,8 @@ export async function uploadRecordedAudio(
         });
 
         if (!submitResponse.ok) {
-            const errorBody = await submitResponse.text(); 
+            const errorBody = await submitResponse.text();
+            console.error("Server error body:", errorBody);
             throw new Error(`Server returned status ${submitResponse.status}`);
         }
 

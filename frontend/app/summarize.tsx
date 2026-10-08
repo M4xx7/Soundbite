@@ -8,7 +8,6 @@ import PlaybackControlBtn from '@/app/components/PlaybackControlBtn';
 import AudioBottomBar from '@/app/components/AudioBottomBar';
 import { useAudioProcessor } from '@/app/hooks/useAudioProcessor';
 import { SUBMIT_JOB_URL } from './config/api';
-import TestScreen from './components/TestScreen';
 
 export default function Summarize() {
     const {
@@ -41,7 +40,6 @@ export default function Summarize() {
                             Audio: {currentAudioName}
                         </Text>
 
-                        {/* Distinct Dark Mode Card for Breakdown Text */}
                         <View style={{
                             backgroundColor: '#1C1C1E',
                             borderRadius: 16,
@@ -55,7 +53,6 @@ export default function Summarize() {
                             </Text>
                         </View>
 
-                        {/* Centered Topics Section */}
                         {summary.topics && summary.topics.length > 0 && (
                             <View style={{ marginBottom: 30 }}>
                                 <Text style={[typography.subtitle, { fontSize: 18, marginBottom: 12, textAlign: 'center' }]}>
@@ -96,8 +93,6 @@ export default function Summarize() {
                     </View>
                 ) : null}
             </ScrollView>
-
-            <TestScreen></TestScreen>
 
             <AudioBottomBar
                 actionTitle="Summarize"
